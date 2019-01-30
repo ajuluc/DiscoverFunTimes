@@ -23,14 +23,19 @@ See for example there are three versions of python:
 
 You probably want the last one, but find out more about it by typing:
 
-    $ module whatis python-3.7.1
+    $ module whatis python/3.7.1
 
-This will tell you about it, and crucially, a list of the prerequisites, in the correct order.
+This will tell you about it, and crucially, a list of the prerequisites, if there are any.
 These contain compilers and libraries that the software you want was compiled against, and
 are needed for it to run.
-It suggests putting these module load commands in your `.bashrc` file, which we will get to
-in the next tutorial. For now, we will just type them by hand.
-But before you do that, let's see what python you will get without loading the modules.
+For example, try:
+
+    $ module whatis python/3.7.0
+
+it will tell you that, if you wanted to use pytorch you would need to load the module `openmpi/3.1.1`
+*before* loading the module `python/3.7.0`.
+
+But before you do anything, let's see what python you will get without loading the modules.
 There may be several programs called
 `python` and when you type `python` the computer has to pick one of them to run.
 The way it does this is by searching through all the directories listed in your `$PATH` until it finds one containing
@@ -38,7 +43,7 @@ an executable called `python`, and runs that.
 I can see my current `$PATH` by typing `echo $PATH`:
 
     $ echo $PATH
-    /usr/lib64/qt-3.3/bin:/opt/ibm/platform_mpi/bin:/shared/apps/lsf/9.1/linux2.6-glibc2.3-x86_64/etc:/shared/apps/lsf/9.1/linux2.6-glibc2.3-x86_64/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/r.west/bin
+    /shared/centos7/discovery/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ajulu.c/.local/bin:/home/ajulu.c/bin
 
 The `which` program is a helpful command that tells you which executable program will
 be run when you ask for a given program. ie. which is the first directory in your `$PATH`
@@ -55,7 +60,7 @@ To see what version this is:
 Let's see if there's a `python3` program:
 
     $ which python3
-    /usr/bin/which: no python3 in (/usr/lib64/qt-3.3/bin:/opt/ibm/platform_mpi/bin:/shared/apps/lsf/9.1/linux2.6-glibc2.3-x86_64/etc:/shared/apps/lsf/9.1/linux2.6-glibc2.3-x86_64/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/r.west/bin)
+    /usr/bin/which: no python3 in (/shared/centos7/discovery/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ajulu.c/.local/bin:/home/ajulu.c/bin)
 
 This is telling us that there is no executable called `python3` in any of the directories listed in the `$PATH`. If I were to try executing it, it would fail:
 
@@ -64,14 +69,11 @@ This is telling us that there is no executable called `python3` in any of the di
 
 Now let's load the modules we found out about earlier:
 
-    $ module load gnu-4.4-compilers
-    $ module load fftw-3.3.3
-    $ module load platform-mpi
-    $ module load python-3.5.2
+    $ module load python/3.7.1
 
-Or you could do them all in one go (but in the correct order):
+Or (if you wanted 3.7.0 with pytorch) with the pre-requisites:
 
-    $ module load gnu-4.4-compilers fftw-3.3.3 platform-mpi python-3.5.2
+    $ module load openmpi/3.1.1 python/3.7.0
 
 And try again:
 
@@ -81,21 +83,21 @@ And try again:
 That is the same as before!:
 
     $ python -V
-    Python 2.6.6
+    Python 2.7.5
 
 But now we have a new program called `python3` available, which wasn't before:
 
     $ which python3
-    /shared/apps/python/Python-3.5.2/Python-3.5.2/INSTALL/bin/python3
+    /shared/centos7/python/3.7.1/bin/python3
     $ python3 -V
-    Python 3.5.2
+    Python 3.7.1
 
 Now we can execute it, type some python commands, and get the results.
 Press control-D to quit it when you're done:
 
     $ python3
-    Python 3.5.2 (default, Sep 19 2016, 11:10:34)
-    [GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux
+    Python 3.7.1 (default, Nov 14 2018, 15:27:21) 
+    [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> print("Hello, World!")
     Hello, World!
