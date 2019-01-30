@@ -16,13 +16,14 @@ As you can see, there are a lot, including quantum chemistry packages,
 molecular dynamics packages, specialized compilers, matlab, etc.
 See for example there are three versions of python:
 
-    python-2.7.5
-    python-3.3.2
-    python-3.5.2
+    python/2.7.15
+    python/3.6.6
+    python/3.7.0
+    python/3.7.1
 
 You probably want the last one, but find out more about it by typing:
 
-    $ module whatis python-3.5.2
+    $ module whatis python-3.7.1
 
 This will tell you about it, and crucially, a list of the prerequisites, in the correct order.
 These contain compilers and libraries that the software you want was compiled against, and
@@ -49,7 +50,7 @@ that contains an executable with the requested name. For example:
 To see what version this is:
 
     $ python -V
-    Python 2.6.6
+    Python 2.7.5
 
 Let's see if there's a `python3` program:
 
