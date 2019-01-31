@@ -22,10 +22,23 @@ To edit it, using the `vi` ext editor [(some instructions here)](https://www.cs.
 
 You want to add these commands, for `python3`:
 
-    module load gnu-4.4-compilers
-    module load fftw-3.3.3
-    module load platform-mpi
-    module load python-3.5.2
+    module load python/3.7.1
+
+To add the     `module load python/3.7.1 command` to your `vi` visual editor in UNIX, use the following commands to navigate the page:
+`:` using this sends the cursor to the bottom of the screen. This command is completed by hitting the <Return> or Enter key
+`h` or Backspace to move the cursor left one character
+`l` or spacebar to move the cursor right one character
+`k` or arrow up <^> to move the cursor up one line 
+`j` or <return> to move the cursor down one line 
+	
+To insert text before the cursor:
+`i` then hit <esc> to get out of the insert mode
+
+After adding the `module load python/3.7.1 command` use the following commands to save to save and exit 
+`:w` to save then `:q` to exit. You can also combine both save and exit into one by using this command `:wq`
+
+
+
 
 So that your `.bashrc` file looks something like:
 
@@ -37,10 +50,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-module load gnu-4.4-compilers
-module load fftw-3.3.3
-module load platform-mpi
-module load python-3.5.2
+module load python/3.7.1
 ```
 
 **Remember!** Your `.bashrc` is only executed when you first log in to a computer,
