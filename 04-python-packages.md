@@ -107,18 +107,18 @@ Now let's try looking for the new `ipython` program:
 Same result as before! We can't find it.
 That's because `pip --user` installed it in the folder `~/.local/bin`, which isn't on our `$PATH`. If we add it to the end of our `$PATH` environment variable, it'll work:
 
-    $ export PATH=$PATH:~/.local/bin
+     export PATH=$PATH:~/.local/bin
     $ which ipython
-    ~/.local/bin/ipython
+    /shared/centos7/anaconda3/3.7/bin/ipython
+    $ which ipython ~/.local/bin/ipython
+    /shared/centos7/anaconda3/3.7/bin/ipython
+    /usr/bin/which: no ipython in (/home/ajulu.c/.local/bin)
+    $ which ipython~/.local/bin/ipython
+    /usr/bin/which: no ipython in (./ipython~/.local/bin)
     $ ipython
-    Python 3.5.2 (default, Sep 19 2016, 11:10:34)
-    Type "copyright", "credits" or "license" for more information.
-
-    IPython 5.1.0 -- An enhanced Interactive Python.
-    ?         -> Introduction and overview of IPython's features.
-    %quickref -> Quick reference.
-    help      -> Python's own help system.
-    object?   -> Details about 'object', use 'object??' for extra details.
+    Python 3.7.0 (default, Jun 28 2018, 13:15:42) 
+    Type 'copyright', 'credits' or 'license' for more information
+    IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
 
     In [1]: import numpy
 
