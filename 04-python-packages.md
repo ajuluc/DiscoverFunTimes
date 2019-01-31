@@ -21,42 +21,45 @@ First, load python3 and see which of our favorite libraries
 are already installed.
 
 
+
+
 ```python
 $ python3
-Python 3.5.2 (default, Sep 19 2016, 11:10:34)
-[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux
+Python 3.7.0 (default, Jun 28 2018, 13:15:42) 
+[GCC 7.2.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
 >>> import scipy
 >>> import scipy.integrate
 >>> import matplotlib
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-ImportError: No module named 'matplotlib'
 >>> import SALib
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-ImportError: No module named 'SALib'
+ModuleNotFoundError: No module named 'SALib'
+>>> 
+
 ```
 
-So it looks like `numpy` and `scipy` are both installed, but `matplotlib` and `SALib` are not.
+So it looks like `numpy`, `scipy` and `matplotlib` are all installed, but `SALib` is not.
 To see where the `numpy` came from:
 
 ```python
 >>> numpy
-<module 'numpy' from '/shared/apps/python/Python-3.5.2/Python-3.5.2/INSTALL/lib/python3.5/site-packages/numpy/__init__.py'>
+<module 'numpy' from '/shared/centos7/anaconda3/3.7/lib/python3.7/site-packages/numpy/__init__.py'>
+>>> 
 ```
 
 It's in the centrally managed folder maintained by research-computing.
 When you're done and want to leave the python3 terminal, type `exit()`
 or press `Ctrl-D`.
+Use anaconda3 module to get to pip not python module
 
 A useful program for installing (and uninstalling) python packages is called `pip`.
 A bit like `conda`, it figures out what the dependencies are and gets those too.
 Let's see if we have it:
 
     $ which pip
-    /shared/apps/python/Python-3.5.2/Python-3.5.2/INSTALL/bin/pip
+    /shared/centos7/anaconda3/3.7/bin/pip
     $ pip help
 
 Looks good. Let's try using it to install `matplotlib`:
@@ -68,10 +71,7 @@ the real problem is the line `PermissionError: [Errno 13] Permission denied: '/s
 That's because we don't have [permission](http://www.ee.surrey.ac.uk/Teaching/Unix/unix5.html) to write to the centrally managed folder.
 Fortunately, we can ask pip to install things in our own `$HOME` folder, where we
 have write permissions:
-
-    $ pip install --user matplotlib
-
-Assuming that worked, go ahead and get SALib too:
+Install SALib in your own `$HOME` folder using the following command:
 
     $ pip install --user SALib
 
@@ -79,17 +79,13 @@ And then test to see if it worked:
 
 ```python
 $ python3
-Python 3.5.2 (default, Sep 19 2016, 11:10:34)
-[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux
+Python 3.7.0 (default, Jun 28 2018, 13:15:42) 
+[GCC 7.2.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> import matplotlib
->>> matplotlib
-<module 'matplotlib' from '/home/r.west/.local/lib/python3.5/site-packages/matplotlib/__init__.py'>
 >>> import SALib
->>> SALib
-<module 'SALib' from '/home/r.west/.local/lib/python3.5/site-packages/SALib/__init__.py'>
->>> exit()
-```
+>>> 
+``` 
+Hit control D to exit the python window
 
 One other helpful package is called `ipython`. As well as python modules, this comes with some executables.
 First check we don't have it:
